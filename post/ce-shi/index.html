@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>这是我的第一个标签 | Make a Mark</title>
+<title>测试 | Make a Mark</title>
 <meta name="description" content="君子欲讷于言而敏于行">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,6 +11,12 @@
 <link rel="shortcut icon" href="https://mataoqun.github.io/favicon.ico">
 <link rel="stylesheet" href="https://mataoqun.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -81,28 +87,38 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: 这是我的第一个标签</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://mataoqun.github.io/post/guan-yu-spring-boot-jvm-pei-zhi">
-                  <h2 class="post-title">关于spring boot JVM 配置</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-07
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">测试</h2>
+            <div class="post-date">2019-03-07</div>
+            
+            <div class="post-content">
+              <p>是打算的发的发阿斯蒂芬阿萨德发送地方</p>
+<!-- more -->
+<p>撒地方撒旦法师的法师打发士大夫撒飒飒是发顺丰大安法师的法师sfadsfdadfsa</p>
+<p>的撒发生大发发的阿撒旦法撒地方撒地方</p>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://mataoqun.github.io/post/hello-hve-notes">
+                  <h3 class="post-title">
+                    Hello Hve Notes
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -124,6 +140,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f1f1f170bb17d43d22ac',
+        clientSecret: '24c7bcbeae794e9f5121e7ae19bfb163754ddf76',
+        repo: 'mataoqun.github.io',
+        owner: 'mataoqun',
+        admin: ['mataoqun'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
