@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Group by 原理及性能分析 | Make a Mark</title>
+<meta name="description" content="君子欲讷于言而敏于行">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="shortcut icon" href="https://mataoqun.github.io/favicon.ico">
+<link rel="stylesheet" href="https://mataoqun.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://mataoqun.github.io">
+        <img src="https://mataoqun.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">Make a Mark</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/" class="site-nav">
+            热门
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      君子欲讷于言而敏于行
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Group by 原理及性能分析</h2>
+            <div class="post-date">2019-03-13</div>
+            
+            <div class="post-content">
+              <!-- more -->
+
+<h2 id="背景">背景</h2><p>   最近领导让做一个任务，有一个项目用的是<code>mysql 5+</code> 版本的数据库，近期需要升级产品模块数据库用的<code>mariadb 10+</code>， 对数据版本的兼容性做分析主要就是业务和性能，并给出解决方案。数据库在<code>sql_mode</code>上有些区别：</p>
+<pre><code>sql_mode=&#39;ONLY_FULL_GROUP_BY,NO_AUTO_VALUE_ON_ZERO,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#39;</code></pre><p>经过今天下来，差不都都是<code>group by</code> 使用不规范导致的，有以下三点：</p>
+<ol>
+<li>查询得并不存在聚合列（eg: 统计数量），但是还是在后面进行<code>group by</code></li>
+<li>查询得列存在聚合的情况，但是<code>group by</code> 的列不全</li>
+<li><code>JOOQ</code>(项目使用的持久性框架)查询记录映射成对基础数据类型的不支持</li>
+</ol>
+<p>给出解决方案也就是缺哪儿补哪儿，可以让查询正常，所以不会对数据本身有影响。<br>但是这样又引起了另外的一个思考: <code>group by</code> 多表、多列的时候会对查询造成什么样的影响？性能？<br>那接下来我对<code>gruop by</code>的原理和性能影响探索一番</p>
+<h2 id="准备">准备</h2><p>   XXXXX</p>
+<h2 id="总结">总结</h2><p>   XXXX</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://mataoqun.github.io/post/markdown-grammar-learning">
+                  <h3 class="post-title">
+                    MarkDown 语法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f1f1f170bb17d43d22ac',
+        clientSecret: '24c7bcbeae794e9f5121e7ae19bfb163754ddf76',
+        repo: 'mataoqun.github.io',
+        owner: 'mataoqun',
+        admin: ['mataoqun'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
